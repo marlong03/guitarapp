@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>GuitarApp</title>
+</head>
+<body>
+    <header>
+        <div>
+            <h1>GUITARAPP</h1>
+        </div>
+        <div></div>
+    </header>
+    <main>
+        <section class="home__container">
+            <div>
+                <input type="search" name="" id="" placeholder="Buscar cancion...">
+            </div>
+            <article class="cancion__target" id="targetCrearCancion">
+                <h2>Crear Cancion</h2>
+            </article>
+            <section class="lista__canciones" id="listaCanciones">
+                <!-- JS -->
+            </section>
+        </section>
+    </main>
+   
+ 
+
+
+
+
+    <footer>
+        
+    </footer>
+
+    <button id="myBtn-VerCancion">V</button>
+    <button id="myBtn-CrearCancion">C</button>
+    
+<!-- The Modals-->
+    <div id="myModal-VerCancion" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="verCancionContent" class="modal-verCancion">
+                 <!-- JS -->
+            </div>
+        </div>
+    </div>
+
+    <div id="myModal-CrearCancion" class="modal">
+        <div class="modal-content">
+            <span class="close2">&times;</span>
+            <div id="verCancionContent" class="modal-crearCancion">
+                <div>
+                    <h2>Crea una cancion</h2>
+                </div>
+                <div class="container__crearCancion" id="containerCrearLetraCancion">
+                    <textarea name="" id="" placeholder="Escribe la cancion aqui..."></textarea>
+                    <input type="button" value="Guardar" class="buttonGuardarLetra" id="btnGuardarLetra">
+                </div>
+                <section id="containerAcordesLetra">
+
+                    <div>
+                        <input type="button" value="Volver" class="buttonGuardarLetra" id="btnVolverLetra">
+                        <h2>Acordes</h2>
+                        <ul>
+                            <li>Em</li>
+                            <li>Em</li>
+                            <li>Em</li>
+                            <li>Em</li>
+                        </ul>
+                        <div>grafica</div>
+                    </div>
+                    <div>
+                        <p >Selecciona las palabras que llevaran un acorde:</p>
+                        <div>
+                            <p class="parrafoSeleccionar">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit cupiditate magni minima tenetur aliquid ducimus numquam vitae animi ipsum quia.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+<!-- /The Modals-->
+  
+    <script src="index.js"></script>
+</body>
+</html>
+
+
+
+
+  <!--
+        Asignar acordes a un texto
+        <section class="container__text" >
+        <p id="containerParrafo"></p>
+    </section> -->
