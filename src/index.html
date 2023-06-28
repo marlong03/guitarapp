@@ -43,8 +43,14 @@
     <div id="myModal-VerCancion" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <div id="verCancionContent" class="modal-verCancion">
-                 <!-- JS -->
+            <div class="container__cancion--info">
+                <div id="verCancionContent" class="modal-verCancion">
+                    <!-- JS -->
+                    
+                </div>
+                <section class="container__mastil" id="container__notas">
+                    Espera por favor...
+                </section>
             </div>
         </div>
     </div>
@@ -52,40 +58,91 @@
     <div id="myModal-CrearCancion" class="modal">
         <div class="modal-content">
             <span class="close2">&times;</span>
-            <div id="verCancionContent" class="modal-crearCancion">
-                <div>
-                    <h2>Crea una cancion</h2>
-                </div>
-                <div class="container__crearCancion" id="containerCrearLetraCancion">
-                    <textarea name="" id="" placeholder="Escribe la cancion aqui..."></textarea>
-                    <input type="button" value="Guardar" class="buttonGuardarLetra" id="btnGuardarLetra">
-                </div>
-                <section id="containerAcordesLetra">
+            <div id="crearCancionContent" class="modal-crearCancion">
+                <section class="">
 
-                    <div>
-                        <input type="button" value="Volver" class="buttonGuardarLetra" id="btnVolverLetra">
-                        <h2>Acordes</h2>
-                        <ul>
-                            <li>Em</li>
-                            <li>Em</li>
-                            <li>Em</li>
-                            <li>Em</li>
-                        </ul>
-                        <div>grafica</div>
-                    </div>
-                    <div>
-                        <p >Selecciona las palabras que llevaran un acorde:</p>
-                        <div>
-                            <p class="parrafoSeleccionar">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit cupiditate magni minima tenetur aliquid ducimus numquam vitae animi ipsum quia.</p>
+                    <h2>Crea una cancion</h2>
+                    <div class="container__crearCancion" id="containerCrearLetraCancion">
+                        <h3>Contenido:</h3>
+                        <div class="container__dates--cancion">
+                            <input type="text"  name="tituloInput" placeholder="Titulo*" id="tituloInput">
+                            <input type="text" name="autorInput"  placeholder="Autor*" id="autorInput">
                         </div>
+                        <div>
+                            <textarea name="letraInput"  placeholder="Letra de cancion*" id="letraInput"></textarea>
+                        </div>
+                        <input type="button" value="Guardar" class="buttonGuardarLetra" id="btnGuardarLetra">
                     </div>
                 </section>
+                <section id="containerAcordesLetra" class="">
+                    <div class="container__acordes--seleccionar">
+                        <h3>Acordes:</h3>
+                        <ul class="lista__acordes" id="listaAcordesHTML">
+                          
+                        </ul>
+                        <div>
+                               <div class="container__acorde crearAcorde ">
+                          
+                            <div class="mastil" id="mastil">
+                            <div class="traste">
+                                <div class="punto" id="24"></div>
+                                <div class="punto" id="23"></div>
+                                <div class="punto" id="22"></div>
+                                <div class="punto" id="21"></div>
+                                <div class="punto" id="20"></div>
+                                <div class="punto" id="19"></div>
+                            </div>
+                            <div class="traste">
+                                <div class="punto" id="18"></div>
+                                <div class="punto" id="17"></div>
+                                <div class="punto" id="16"></div>
+                                <div class="punto" id="15"></div>
+                                <div class="punto" id="14"></div>
+                                <div class="punto" id="13"></div>
+                            </div>
+                            <div class="traste">
+                                <div class="punto" id="12"></div>
+                                <div class="punto" id="11"></div>
+                                <div class="punto" id="10"></div>
+                                <div class="punto" id="9"></div>
+                                <div class="punto" id="8"></div>
+                                <div class="punto" id="7"></div>
+                            </div>
+                            <div class="traste">
+                                <div class="punto" id="6"></div>
+                                <div class="punto" id="5"></div>
+                                <div class="punto" id="4"></div>
+                                <div class="punto" id="3"></div>
+                                <div class="punto" id="2"></div>
+                                <div class="punto" id="1"></div>
+                            </div>
+                            </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                     
+                    <div class="container__acordes--pintar">
+                        <p>Selecciona las palabras que llevaran un acorde:</p>
+                        <p class="texto__pintar" id="containerParrafo">sin letra</p>
+                    </div>
+                    <div>
+
+                        <input type="button" value="Volver" class="buttonGuardarLetra" id="btnVolverLetra">
+                        <input type="button" value="Guardar" class="buttonGuardarLetra" id="btnGuardarCancion">
+                    </div>
+
+                </section>
+                
             </div>
         </div>
     </div>
+
+    
 <!-- /The Modals-->
   
     <script src="index.js"></script>
+
 </body>
 </html>
 
@@ -97,3 +154,45 @@
         <section class="container__text" >
         <p id="containerParrafo"></p>
     </section> -->
+
+
+       <!-- //crear acordes -->
+                        <!-- <div class="container__acorde crearAcorde ">
+                            <div class="nota">
+                                <input type="text" placeholder="Nombre">
+                            </div>
+                            <div class="mastil" id="mastil">
+                            <div class="traste">
+                                <div class="punto" id="24"></div>
+                                <div class="punto" id="23"></div>
+                                <div class="punto" id="22"></div>
+                                <div class="punto" id="21"></div>
+                                <div class="punto" id="20"></div>
+                                <div class="punto" id="19"></div>
+                            </div>
+                            <div class="traste">
+                                <div class="punto" id="18"></div>
+                                <div class="punto" id="17"></div>
+                                <div class="punto" id="16"></div>
+                                <div class="punto" id="15"></div>
+                                <div class="punto" id="14"></div>
+                                <div class="punto" id="13"></div>
+                            </div>
+                            <div class="traste">
+                                <div class="punto" id="12"></div>
+                                <div class="punto" id="11"></div>
+                                <div class="punto" id="10"></div>
+                                <div class="punto" id="9"></div>
+                                <div class="punto" id="8"></div>
+                                <div class="punto" id="7"></div>
+                            </div>
+                            <div class="traste">
+                                <div class="punto" id="6"></div>
+                                <div class="punto" id="5"></div>
+                                <div class="punto" id="4"></div>
+                                <div class="punto" id="3"></div>
+                                <div class="punto" id="2"></div>
+                                <div class="punto" id="1"></div>
+                            </div>
+                            </div>
+                            </div> -->

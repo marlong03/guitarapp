@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    .mastil{
+        background-color: #aeaeae;
+        width: 90px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 2px solid black;
+    }
+    .traste{
+        background-color: rgb(202, 202, 202);
+        border-left: 3px solid black;
+        width: 25%;
+        height: 100%;
+    }
+    .punto{
+        width: 100%;
+        border-top: 2px solid black;
+        height: 13%;
+    }
+    .nota{
+        margin-right: 10px;
+    }
+    .nota h2{
+        background-color: #1e33d4;
+        color:white;
+        border-radius: 100px;
+        padding:4px 10px;
+        font-family: monospace;
+        text-transform: capitalize;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 17px;
+
+    }
+    .container__mastil{
+       
+        
+    }
+    .container__acorde{
+        margin:20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+<body>
+    <h1>Acordes</h1>
+    <section class="container__acordes">
+
+    </section>
+    <section class="container__mastil" id="container__notas">
+        
+    </section>
+    <div>
+        <textarea name="" id="" cols="30" rows="10">
+            
+        </textarea>
+    </div>
+    <script>
+       /*  let mastil = document.getElementById('mastil') */
+
+       /*  mastil.addEventListener('click',function(x){
+            console.log(listaPulsadasDef);
+        }) */
+        function pintarAcordes(id){
+            let listaPulsadasDef = []
+            let containerNotas = document.getElementById('container__notas')
+
+            fetch('http://localhost:8080/posicion/filtro/'+id)
+            .then(x =>x.json())
+            .then(res => {
+                listaPulsadasDef = res
+                let listaNombreAcordes = []
+                let listaNoRepetida = []
+                let listaDeAcordes = []
+                let lista = []
+
+                listaPulsadasDef.forEach(e => {
+                    listaNombreAcordes.push(Object.assign({}, e)[0])
+                    lista.push(Object.assign({}, e))
+                });
+        
+                listaNoRepetida = listaNombreAcordes.reduce((acum,x)=>{
+                    if(acum.indexOf(x) === -1) acum.push(x)
+                    return acum
+                },[])
+        
+                listaNoRepetida.forEach(nota => {
+                    let listaAqui = []
+                    lista.filter(acorde => {
+                        if(acorde[0] == nota) listaAqui.push(acorde)
+                    });
+                    listaDeAcordes.push(listaAqui)
+                });
+                listaDeAcordes.forEach(acordes => {
+                    containerNotas.innerHTML +=
+                    '<div class="container__acorde">'+
+                        '<div class="nota">'+
+                            '<h2>'+acordes[0][0]+'</h2>'+
+                        '</div>'+
+                        '<div class="mastil" id="mastil">'+
+                        '<div class="traste">'+
+                            '<div class="punto" id="'+acordes[0][0]+'24"></div>'+
+                            '<div class="punto" id="'+acordes[0][0]+'23"></div>'+
+                            '<div class="punto" id="'+acordes[0][0]+'22"></div>'+
+                            '<div class="punto" id="'+acordes[0][0]+'21"></div>'+
+                            '<div class="punto" id="'+acordes[0][0]+'20"></div>'+
+                            '<div class="punto" id="'+acordes[0][0]+'19"></div>'+
+                        '</div>'+
+                        '<div class="traste">'+
+                            '<div class="punto" id="'+acordes[0][0]+'18"></div>'+
+                            '<div class="punto" id="'+acordes[0][0]+'17"></div>'+
+                            '<div class="punto" id="'+acordes[0][0]+'16"></div>'+
+                            '<div class="punto" id="'+acordes[0][0]+'15"></div>'+
+                            '<div class="punto" id="'+acordes[0][0]+'14"></div>'+
+                            '<div class="punto" id="'+acordes[0][0]+'13"></div>'+
+                        '</div>'+
+                        '<div class="traste">'+
+                            '<div class="punto" id="'+acordes[0][0]+'12"></div>'+
+                            '<div class="punto" id="'+acordes[0][0]+'11"></div>'+
+                            '<div class="punto" id="'+acordes[0][0]+'10"></div>'+
+                            '<div class="punto" id="'+acordes[0][0]+'9"></div>'+
+                            '<div class="punto" id="'+acordes[0][0]+'8"></div>'+
+                            '<div class="punto" id="'+acordes[0][0]+'7"></div>'+
+                        '</div>'+
+                        '<div class="traste">'+
+                            '<div class="punto" id="'+acordes[0][0]+'6"></div>'+
+                            '<div class="punto" id="'+acordes[0][0]+'5"></div>'+
+                            '<div class="punto" id="'+acordes[0][0]+'4"></div>'+
+                            '<div class="punto" id="'+acordes[0][0]+'3"></div>'+
+                            '<div class="punto" id="'+acordes[0][0]+'2"></div>'+
+                            '<div class="punto" id="'+acordes[0][0]+'1"></div>'+
+                        '</div>'+
+                        '</div>'+
+                        '</div>'
+
+                    acordes.forEach(element => {
+                        document.getElementById(acordes[0][0] + element[2]).style.backgroundColor = "#1e33d4"
+                    });
+                })
+            })
+        }
+pintarAcordes(2) //----------
+    </script>
+</body>
+</html>

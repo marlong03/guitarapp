@@ -1,0 +1,10 @@
+SELECT 
+ guitarappdb.posicion.idcancion , 
+ guitarappdb.posicion.posicion,
+guitarappdb.posicion.idacorde,
+guitarappdb.acordepulsada.idpulsada
+  FROM guitarappdb.acordepulsada 
+inner join guitarappdb.posicion 
+where guitarappdb.posicion.idacorde 
+= guitarappdb.acordepulsada.idacorde 
+and guitarappdb.posicion.idcancion = 1;

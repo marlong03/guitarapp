@@ -63,11 +63,12 @@ input[type="search"]{
     margin: 60px 0;
     padding:0 10px;
 }
-.modal-verCancion aside{
+
+/* .modal-verCancion aside{
     background-color: #d0d0d0;
     border-radius: 5px;
     padding: 20px;
-}
+} */
 .modal-verCancion ul{
     list-style: none;
 }
@@ -77,82 +78,6 @@ input[type="search"]{
     line-height: 50px;
 }
 /*  */
-.modal-crearCancion{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-.modal-crearCancion h2{
-    margin:50px 0 20px 0;
-    text-align: center;
-}
-.modal-crearCancion div{
-    width: 100%;
-    margin:0 auto;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-}
-.container__crearCancion{
-    align-items: end !important;    
-}
-.container__crearCancion textarea{
-    width: 100%;
-    margin:0 auto; 
-    outline: none;
-    padding: 20px;
-    font-size: 18px;
-    border-radius: 5px;
-    resize: none;
-    height: 220px;
-}
-
-.modal-crearCancion ul{
-    display: flex;
-    list-style: none;
-}
-.modal-crearCancion li{
-    margin: 0 5px 10px;
-    padding:10px;
-    border-radius: 10px;
-    background-color: #292ec3;
-    color:white;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    cursor: pointer;
-}
-.modal-crearCancion li:hover{
-    background-color: black;
-
-}
-.parrafoSeleccionar{
-    margin-top: 30px;
-    width: 90%;
-    line-height: 50px;
-    font-size: 20px;
-    cursor: pointer;
-}
-.buttonGuardarLetra{
-    padding:10px;
-    border-radius: 5px;
-    outline: none;
-    border: none;
-    cursor: pointer;
-    background-color: #292ec3;
-    border: 2px solid #292ec3;
-
-    color:white;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    letter-spacing: 1px;
-    font-size: 18px;
-    margin-top: 30px;
-}
-.buttonGuardarLetra:hover{
-    background-color: white;
-    border: 2px solid #292ec3;
-    color:#292ec3
-}
 
 
 
@@ -173,7 +98,7 @@ input[type="search"]{
   /* Modal Content/Box */
   .modal-content {
     background-color: #fefefe;
-    margin: 15% auto; 
+    margin: 15px auto; 
     padding: 20px;
     border: 1px solid #888;
     width: 80%; 
@@ -224,3 +149,207 @@ em{
     margin:-30px -80px ;
     font-size: 20px;
 } */
+
+
+/* acordes ver cancion */
+.mastil{
+    background-color: #aeaeae;
+    width: 90px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+}
+.traste{
+    background-color: rgb(202, 202, 202);
+    border-left: 3px solid black;
+    width: 25%;
+    height: 100%;
+}
+.punto{
+    width: 100%;
+    border-top: 1px solid black;
+    height: 13%;
+}
+.nota{
+    margin-right: 10px;
+}
+
+
+.nota h2{
+    background-color: #1e33d4;
+    color:white;
+    border-radius: 100px;
+    padding:4px 10px;
+    font-family: monospace;
+    text-transform: capitalize;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 17px;
+
+}
+.container__cancion--info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container__acorde{
+    margin:40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.crearAcorde{
+    margin:0px !important;
+   
+}
+.crearAcorde .mastil{
+    background-color: #aeaeae;
+    width: 180px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+}
+.crearAcorde h2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.crearAcorde .nota{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.punto{
+    width: 100%;
+    border-top: 1px solid black;
+    height: 16%;
+    cursor: pointer;
+}
+
+
+/* .container__acorde--create{
+    background-color: #292ec3;
+} */
+.primer__traste{
+    background-color: red;
+    padding:2px 5px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: #1e33d4;
+    color:white;
+    border-radius: 5px;
+    margin-left: -20px;
+    position: relative;
+    top:-40px;
+    right: -90px;
+    font-size: 12px;
+
+}
+.text__float{
+    background-color: #1e33d4;
+    color:white;
+    padding:3px 5px;
+    border-radius: 10px;
+    margin-right: -20px;
+    position: relative;
+    top:-20px;
+    left:-10px;
+}
+/* .container__acorde--seleccionar p {
+    margin-top: 10px;
+    line-height: 50px;
+    font-size: 20px;
+    cursor: pointer;
+} */
+
+
+
+
+/*  */
+.modal-crearCancion section{
+    display: flex ;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+.modal-crearCancion section input[type=text]{
+    padding:10px;
+    font-size: 16px;
+    outline: none;
+    margin:20px 10px;
+}
+.modal-crearCancion textarea{
+    padding:10px;
+    width: 100%;
+    margin:0 auto;
+    height: 200px;
+    outline: none;
+    resize: none;
+    font-size: 16px;
+}
+.modal-crearCancion input[type=button]{
+    padding:10px 15px;
+    font-size: 16px;
+    outline: none;
+    background-color: #1e33d4;
+    color:white;
+    margin:20px 10px;
+    border: none;
+    cursor: pointer;
+}
+.lista__acordes{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.lista__acordes li{
+    background-color: #1e33d4;
+    padding:10px 20px;
+    border-radius: 10px;
+    list-style: none;
+    color:white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin:0px 5px;
+    margin-bottom:20px;
+    cursor: pointer;
+
+}
+.lista__acordes li:hover{
+    background-color: #000000;
+
+}
+.container__acordes--seleccionar{
+    margin-top: 0px;
+    width: 70%;
+}
+.container__acordes--seleccionar ul{
+    margin-top: 20px;
+}
+.container__acordes--pintar{
+    margin-left: 30px;
+}
+.container__acordes--pintar p{
+    margin-top: 20px;
+}
+
+.texto__pintar{
+    line-height: 60px;
+    cursor: pointer;
+}
+.texto__pintar em{
+    background-color: #1e33d4;
+    color:white;
+    padding:5px;
+    border-radius: 10px;
+    font-size: 15px;
+    position: relative;
+    margin-right: -20px;
+    top:-25px;
+    left:-30px;
+}
