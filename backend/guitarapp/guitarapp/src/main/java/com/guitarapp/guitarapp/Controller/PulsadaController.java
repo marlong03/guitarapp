@@ -33,9 +33,14 @@ public class PulsadaController {
     public Optional<Pulsada>  obtenerPulsadaes(@PathVariable Integer id){
         return pulsadaService.obtenerPulsada(id);
     }
+    
     @PostMapping("/post")
     public Pulsada crearPulsada(@RequestBody Pulsada pulsada){
         return pulsadaService.crearPulsada(pulsada);
+    }
+     @PostMapping("/post/all")
+    public Iterable<Pulsada> crearPulsadas(@RequestBody Iterable<Pulsada> pulsadas){
+        return pulsadaService.crearPulsadas(pulsadas);
     }
     @PutMapping("/put")
     public Pulsada modificarPulsada(@RequestBody Pulsada pulsada){

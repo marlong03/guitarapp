@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.guitarapp.guitarapp.Model.Posicion;
-import com.guitarapp.guitarapp.Model.PosicionDAO;
 import com.guitarapp.guitarapp.Repostory.PosicionRepository;
 
 import jakarta.persistence.Tuple;
@@ -37,5 +36,10 @@ public class PosicionService {
     public Iterable<Posicion> filtrarPorCancion(Integer id){
         return posicionRepository.findByIdCancion(id);
     }
-   
+      public Iterable<Posicion> saveAll(Iterable<Posicion> posicion){
+        return posicionRepository.saveAll(posicion);
+    }
+    public Integer obtenerUltimoId(){
+        return posicionRepository.obtenerUltimoId();
+    }
 }

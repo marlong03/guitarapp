@@ -25,8 +25,12 @@ public class PulsadaService {
     public Pulsada crearPulsada(Pulsada pulsada){
         return pulsadaRepository.save(pulsada);
     }
+    public Iterable<Pulsada> crearPulsadas(Iterable<Pulsada> pulsadas){
+        return pulsadaRepository.saveAll(pulsadas);
+    }
     public void eliminarPulsada(Integer id){
         pulsadaRepository.deleteById(id);
     }
+    
    
 }

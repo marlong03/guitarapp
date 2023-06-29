@@ -105,19 +105,23 @@ input[type="search"]{
   }
   
   .close,
-  .close2  {
+  .close2,
+  .close3  {
     color: #292ec3;
     font-family: monospace;
     float: right;
     font-size: 50px;
     font-weight: bold;
     margin-right: 20px;
+    cursor: pointer;
   }
   
   .close:hover,
   .close:focus,
   .close2:hover,
-  .close2:focus {
+  .close2:focus,
+  .close3:hover,
+  .close3:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
@@ -162,7 +166,7 @@ em{
     border: 2px solid black;
 }
 .traste{
-    background-color: rgb(202, 202, 202);
+    background-color: #cacaca;
     border-left: 3px solid black;
     width: 25%;
     height: 100%;
@@ -249,6 +253,32 @@ em{
     right: -90px;
     font-size: 12px;
 
+}
+.primer__trasteCrear{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-left: -20px;
+    position: relative;
+    top:-65px;
+    right: -182px;
+    margin-bottom: 10px;
+
+}
+.primer__trasteCrear input[type=number],.nota__crear input[type=text]{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 12px;
+    color:black;
+    
+    width: 30px;
+    outline: none;
+    border:none;
+    padding:5px;
+    border: 2px solid #1e33d4;
+}
+.nota__crear input[type=text]{
+    width:80px;
+    font-size: 16px;
+    height: 30px;
+    margin:0 10px;
 }
 .text__float{
     background-color: #1e33d4;
@@ -352,4 +382,25 @@ em{
     margin-right: -20px;
     top:-25px;
     left:-30px;
+}
+.nota__crear input{
+    width: 70px;
+    padding:10px 15px;
+    outline: none;
+    margin: 0 20px;
+}
+.modal-CrearAcorde {
+    margin: 50px 0;
+}
+.container__acorde--info{
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.container__acorde--info h1{
+    margin-bottom: 20px;
+
 }

@@ -21,6 +21,9 @@
             <article class="cancion__target" id="targetCrearCancion">
                 <h2>Crear Cancion</h2>
             </article>
+            <article class="cancion__target" id="targetCrearCancion">
+                <h2>Crear Acorde</h2>
+            </article>
             <section class="lista__canciones" id="listaCanciones">
                 <!-- JS -->
             </section>
@@ -38,6 +41,8 @@
 
     <button id="myBtn-VerCancion">V</button>
     <button id="myBtn-CrearCancion">C</button>
+    <button id="myBtn-CrearAcorde">Camo</button>
+
     
 <!-- The Modals-->
     <div id="myModal-VerCancion" class="modal">
@@ -54,6 +59,72 @@
             </div>
         </div>
     </div>
+
+    <div id="myModal-CrearAcorde" class="modal">
+        <div class="modal-content">
+            <span class="close3">&times;</span>
+            <div class="container__acorde--info">
+                <div>
+                    <h1>Crear Acorde</h1>
+                    <p>Pinta el acorde aqui:</p>
+                </div>
+                <div id="crearAcordeContent" class="modal-CrearAcorde">
+                   
+                     <div class="container__acorde crearAcorde">
+                            <div class="nota__crear">
+                                <input type="text" placeholder="Acorde" id="nombreAcordeCrear">
+                            </div>
+                            <span class="primer__trasteCrear"><input type="number" value="1" id="primerTrasteCrear"></span>
+                            <div class="mastil" id="mastilCrearAcorde">
+                            <div class="traste">
+                                <div class="punto" id="crearAcorde24"></div>
+                                <div class="punto" id="crearAcorde23"></div>
+                                <div class="punto" id="crearAcorde22"></div>
+                                <div class="punto" id="crearAcorde21"></div>
+                                <div class="punto" id="crearAcorde20"></div>
+                                <div class="punto" id="crearAcorde19"></div>
+                            </div>
+                            <div class="traste">
+                                <div class="punto" id="crearAcorde18"></div>
+                                <div class="punto" id="crearAcorde17"></div>
+                                <div class="punto" id="crearAcorde16"></div>
+                                <div class="punto" id="crearAcorde15"></div>
+                                <div class="punto" id="crearAcorde14"></div>
+                                <div class="punto" id="crearAcorde13"></div>
+                            </div>
+                            <div class="traste">
+                                <div class="punto" id="crearAcorde12"></div>
+                                <div class="punto" id="crearAcorde11"></div>
+                                <div class="punto" id="crearAcorde10"></div>
+                                <div class="punto" id="crearAcorde9"></div>
+                                <div class="punto" id="crearAcorde8"></div>
+                                <div class="punto" id="crearAcorde7"></div>
+                            </div>
+                            <div class="traste">
+                                <div class="punto" id="crearAcorde6"></div>
+                                <div class="punto" id="crearAcorde5"></div>
+                                <div class="punto" id="crearAcorde4"></div>
+                                <div class="punto" id="crearAcorde3"></div>
+                                <div class="punto" id="crearAcorde2"></div>
+                                <div class="punto" id="crearAcorde1"></div>
+                            </div>
+                            </div>
+                            </div>
+
+                </div>
+                <div >
+                    <!-- JS -->
+                    <input type="button" value="Limpiar" class="buttonLimpiarAcorde btnGeneral" id="btnLimpiarAcorde">
+                    <input type="button" value="Guardar" class="buttonGuardarAcorde btnGeneral" id="btnGuardarAcorde">
+
+                </div>
+           <!--      <section class="container__mastil" id="container__crearAcorde">
+                    Espera por favor...
+                </section> -->
+            </div>
+        </div>
+    </div>
+
 
     <div id="myModal-CrearCancion" class="modal">
         <div class="modal-content">
@@ -81,40 +152,40 @@
                           
                         </ul>
                         <div>
-                               <div class="container__acorde crearAcorde ">
+                               <div class="container__acorde crearAcorde" id="containerAcordeCrear">
                           
                             <div class="mastil" id="mastil">
                             <div class="traste">
-                                <div class="punto" id="24"></div>
-                                <div class="punto" id="23"></div>
-                                <div class="punto" id="22"></div>
-                                <div class="punto" id="21"></div>
-                                <div class="punto" id="20"></div>
-                                <div class="punto" id="19"></div>
+                                <div class="punto" id="Crear24"></div>
+                                <div class="punto" id="Crear23"></div>
+                                <div class="punto" id="Crear22"></div>
+                                <div class="punto" id="Crear21"></div>
+                                <div class="punto" id="Crear20"></div>
+                                <div class="punto" id="Crear19"></div>
                             </div>
                             <div class="traste">
-                                <div class="punto" id="18"></div>
-                                <div class="punto" id="17"></div>
-                                <div class="punto" id="16"></div>
-                                <div class="punto" id="15"></div>
-                                <div class="punto" id="14"></div>
-                                <div class="punto" id="13"></div>
+                                <div class="punto" id="Crear18"></div>
+                                <div class="punto" id="Crear17"></div>
+                                <div class="punto" id="Crear16"></div>
+                                <div class="punto" id="Crear15"></div>
+                                <div class="punto" id="Crear14"></div>
+                                <div class="punto" id="Crear13"></div>
                             </div>
                             <div class="traste">
-                                <div class="punto" id="12"></div>
-                                <div class="punto" id="11"></div>
-                                <div class="punto" id="10"></div>
-                                <div class="punto" id="9"></div>
-                                <div class="punto" id="8"></div>
-                                <div class="punto" id="7"></div>
+                                <div class="punto" id="Crear12"></div>
+                                <div class="punto" id="Crear11"></div>
+                                <div class="punto" id="Crear10"></div>
+                                <div class="punto" id="Crear9"></div>
+                                <div class="punto" id="Crear8"></div>
+                                <div class="punto" id="Crear7"></div>
                             </div>
                             <div class="traste">
-                                <div class="punto" id="6"></div>
-                                <div class="punto" id="5"></div>
-                                <div class="punto" id="4"></div>
-                                <div class="punto" id="3"></div>
-                                <div class="punto" id="2"></div>
-                                <div class="punto" id="1"></div>
+                                <div class="punto" id="Crear6"></div>
+                                <div class="punto" id="Crear5"></div>
+                                <div class="punto" id="Crear4"></div>
+                                <div class="punto" id="Crear3"></div>
+                                <div class="punto" id="Crear2"></div>
+                                <div class="punto" id="Crear1"></div>
                             </div>
                             </div>
                             </div>

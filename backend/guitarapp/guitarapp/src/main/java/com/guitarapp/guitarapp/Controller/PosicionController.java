@@ -13,12 +13,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.guitarapp.guitarapp.Model.Posicion;
-import com.guitarapp.guitarapp.Model.PosicionDAO;
 import com.guitarapp.guitarapp.Service.PosicionService;
-
-import jakarta.persistence.Tuple;
+import com.guitarapp.guitarapp.Model.Posicion;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -39,6 +35,10 @@ public class PosicionController {
     @PostMapping("/post")
     public Posicion crearPosicion(@RequestBody Posicion posicion){
         return posicionService.crearPosicion(posicion);
+    }
+    @PostMapping("/post/all")
+    public Iterable<Posicion> crearPosiciones(@RequestBody Iterable<Posicion> posicion){
+         return posicionService.saveAll(posicion);
     }
     @PutMapping("/put")
     public Posicion modificarPosicion(@RequestBody Posicion posicion){
