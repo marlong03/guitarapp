@@ -1,7 +1,6 @@
 /* HOME */
 //PINTAR CANCIONES EN HOME ----------------
 const listaCancionesHTML = document.getElementById('listaCanciones')
-
 let listaCanciones = []
 async function traerCanciones() {
     try {
@@ -22,6 +21,8 @@ async function traerCanciones() {
     }
   }
 traerCanciones()
+
+
 let listaAcordes = []
 async function traerAcordes(){
     await fetch('http://localhost:8080/acorde/get/all').then(data =>{ 
@@ -35,6 +36,8 @@ async function traerAcordes(){
     })
 }
 traerAcordes()
+
+
 let listaPulsadas = []
 async function traerPulsadas(){
     await fetch('http://localhost:8080/pulsada/get/all').then(data =>{ 
@@ -49,6 +52,7 @@ async function traerPulsadas(){
 }
 traerPulsadas()
 
+
 let listaPosiciones = []
 async function traerPosiciones(){
     await fetch('http://localhost:8080/posicion/get/all').then(data =>{ 
@@ -62,6 +66,7 @@ async function traerPosiciones(){
     })
 }
 traerPosiciones()
+
 
 let ListaAcordesCancion = []
 async function traerAcordesCancion(id){
@@ -85,16 +90,17 @@ async function traerAcordesCancion(id){
 listaCancionesHTML.addEventListener('click',async function(evento){
     let cancion = await accionarVerCancion(evento.target.id)
     let verCancionContent = document.getElementById('verCancionContent')
-        if(cancion){
-            let letras = await pintarAcordesEnTexto(cancion.idcancion,cancion.letra)
-            verCancionContent.innerHTML =
-            '<article>'+
-            '<h2>'+cancion.nombre+'</h2>'+
-            '<p>'+letras+'</p>'+
-            '</article>'
-            pintarAcordes(cancion.idcancion)  //----------
-        }
-    })
+    if(cancion){
+        let letras = await pintarAcordesEnTexto(cancion.idcancion,cancion.letra)
+        verCancionContent.innerHTML =
+        '<article>'+
+        '<h2>'+cancion.nombre+'</h2>'+
+        '<p>'+letras+'</p>'+
+        '</article>'
+        pintarAcordes(cancion.idcancion)  //----------
+    }
+})
+
 
 async function pintarAcordesEnTexto(id,texto){
     let respuesta = ''
@@ -111,6 +117,8 @@ async function pintarAcordesEnTexto(id,texto){
     })
     return respuesta
 }
+
+
 /* MOSTRAR ACORDES DE CANCION */
 function pintarAcordes(id){
     let listaPulsadasDef = []
@@ -190,24 +198,20 @@ function pintarAcordes(id){
     })
 }
 /* /MOSTRAR ACORDES DE CANCION */
+
+
 ///ACCIONAR MODAL VER CANCION ---------------
 
 //ACCIONAR MODAL CREAR CANCION --------------
-const targetCrearCancionHTML = document.getElementById('targetCrearCancion')
-targetCrearCancionHTML.addEventListener('click',function(evento){
-    accionarCrearCancion()
-})
-///ACCIONAR MODAL CREAR CANCION --------------
 
+///ACCIONAR MODAL CREAR CANCION --------------
 async function filtrarCancion(idCancion){
     return await listaCanciones.filter(cancion => cancion.idcancion === parseInt(idCancion))[0]
 }
 /* /HOME */
 /* CREAR CANCION */
 
-/* CREAR CANCION */
 let listaPosicionAcordes = []
-
 function agregarAcordeALetra(letraCancion){
     console.log(letraCancion);
     let acordeSeleccionado = '';
@@ -258,12 +262,15 @@ function agregarAcordeALetra(letraCancion){
             }
         })
 }
+
+
 let btnGuardarCancion = document.getElementById('btnGuardarCancion')
     btnGuardarCancion.addEventListener('click',function(x){
         guardarPosiciones()
     })
+
+
 function guardarPosiciones(){
-    
     fetch('http://localhost:8080/posicion/post/all',{
                 method:'POST',
                 body:JSON.stringify(listaPosicionAcordes),
@@ -280,6 +287,8 @@ function guardarPosiciones(){
              //aqui falta hacer que pasa si no se envio con exito la cancion
             .catch(err =>{console.error(err)})
 }
+
+
 let cancionCreada = {}
 function crearCancion(){
     let containerCrearLetraCancion = document.getElementById('containerCrearLetraCancion')
@@ -319,7 +328,6 @@ function crearCancion(){
             })
              //aqui falta hacer que pasa si no se envio con exito la cancion
             .catch(err =>{console.error(err)})
-
         }else{
             if(tituloInput.value == ''){
                 alert('falta titulo')
@@ -335,11 +343,10 @@ function crearCancion(){
         containerCrearLetraCancion.style.display = 'block';
         containerAcordesLetra.style.display = 'none'
     })
-    //crear modal de crear acorde
-    //investigar como hacer para esconder las cosas con animacion
     //aumentar la cantidad maxima de palabras en letra de cancion
 }
 crearCancion()
+
 
 function acordeAPintar(){
     let listaAcordesHTML = document.getElementById('listaAcordesHTML')
@@ -360,42 +367,36 @@ function acordeAPintar(){
     })
 }
 acordeAPintar()
+
+
 /* /CREAR CANCION */
 //ACCIONAR MODALES
-var modalVerCancion = document.getElementById("myModal-VerCancion");
-var btnVerCancion = document.getElementById("myBtn-VerCancion");
-var spanVerCancion = document.getElementsByClassName("close")[0];
-
+let modalVerCancion = document.getElementById("myModal-VerCancion");
+let btnVerCancion = document.getElementById("myBtn-VerCancion");
+let spanVerCancion = document.getElementsByClassName("close")[0];
 async function accionarVerCancion(idCancion) {
     modalVerCancion.style.display = "block";
     let cancion = await filtrarCancion(idCancion)
     traerAcordesCancion(idCancion)
   return cancion 
 }
+
+
 spanVerCancion.onclick = function() {
   modalVerCancion.style.display = "none";
 }
-window.onclick = function(event) {
-  if (event.target == modalVerCancion) {
-    modalVerCancion.style.display = "none";
-  }
-}
+
+
 /* ------------------------------------------------------------- */
 var modalCrearCancion = document.getElementById("myModal-CrearCancion");
 var btnCrearCancion = document.getElementById("myBtn-CrearCancion");
 var spanCrearCancion = document.getElementsByClassName("close2")[0];
-
 function accionarCrearCancion() {
   modalCrearCancion.style.display = "block";
   //aqui falta limpiar los campos
 }
 spanCrearCancion.onclick = function() {
   modalCrearCancion.style.display = "none";
-}
-window.onclick = function(event) {
-  if (event.target == modalCrearCancion) {
-    modalCrearCancion.style.display = "none";
-  }
 }
 
 /* ---------------- */
@@ -480,11 +481,8 @@ btnGuardarAcorde.addEventListener('click',function(){
    guardarAcorde()
 })
 var modalCrearAcorde = document.getElementById("myModal-CrearAcorde");
-var btnCrearAcorde = document.getElementById("myBtn-CrearAcorde");
 var spanCrearAcorde = document.getElementsByClassName("close3")[0];
-btnCrearAcorde.addEventListener('click',function(){
-    accionarCrearAcorde()
-})
+
 function accionarCrearAcorde() {
   modalCrearAcorde.style.display = "block";
   //aqui falta limpiar los campos
@@ -495,8 +493,30 @@ spanCrearAcorde.onclick = function() {
 window.onclick = function(event) {
   if (event.target == modalCrearAcorde) {
     modalCrearAcorde.style.display = "none";
+    modalVerCancion.style.display = "none";
+    modalCrearCancion.style.display = "none";
+
   }
 }
+
+let containerMenu = document.getElementById('containerMenu')
+let btnMenu = document.getElementById('btnMenu')
+btnMenu.addEventListener('click',function(){
+    if(containerMenu.className.includes('mostrarMenu')){
+        containerMenu.classList.toggle('ocultarMenu')
+    }else{
+        containerMenu.classList.toggle('mostrarMenu')
+    }
+})
+containerMenu.addEventListener('click',function(x){
+    console.log(x.target.childNodes[0].nodeValue);
+    if(x.target.childNodes[0].nodeValue == 'Crear cancion'){
+        accionarCrearCancion()
+    }
+    else if(x.target.childNodes[0].nodeValue == 'Crear acorde'){
+        accionarCrearAcorde()
+    }
+})
 ///ACCIONAR MODALES
 
 //Le pasamos un texto y nos devolvera la posicion y la palabra que seleccionemos

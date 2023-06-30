@@ -22,6 +22,13 @@ header{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow',
     Arial, sans-serif;
     letter-spacing: 2px;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.menu {
+    font-size: 30px;
+    cursor: pointer;
 }
 .home__container{
     background-color: white;
@@ -403,4 +410,55 @@ em{
 .container__acorde--info h1{
     margin-bottom: 20px;
 
+}
+.container__menu{
+    display: flex;
+    justify-content: center;
+    position:fixed;
+    top:0;
+    height: 100vh;
+    left:-300px;
+    width: 250px;
+    background-color:#e3e3e3;
+    box-shadow: 0px 0px 10px gray;
+
+}
+.container__menu ul{
+    margin-top: 50px;
+    width: 100%;
+    text-align: center;
+}
+
+.container__menu li{
+    padding:30px 0;
+    cursor: pointer;
+    width: 100%;
+    list-style: none;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 18px;
+    border-bottom: 2px solid gray;
+}
+
+.container__menu li:hover{
+    background-color: #1e33d4;
+    color:white;
+}
+.mostrarMenu{
+    animation: mostrarMenuAnimation .3s;
+    left:0px;
+
+}
+.ocultarMenu{
+    animation: ocultarMenuAnimation .3s;
+    left:-300px;
+
+}
+@keyframes mostrarMenuAnimation {
+    0%{left:-300px}
+    100%{left:0}
+}
+@keyframes ocultarMenuAnimation {
+    0%{left:0}
+    100%{left:-300px}
+    
 }
