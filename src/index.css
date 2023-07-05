@@ -26,6 +26,11 @@ header{
     justify-content: space-between;
     align-items: center;
 }
+header div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .menu {
     font-size: 30px;
     cursor: pointer;
@@ -48,15 +53,37 @@ input[type="search"]{
     letter-spacing: 1px;
     margin-bottom: 40px;
 }
-.lista__canciones{
-
+.container__title--cancion{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.container__title--cancion input{
+    margin-left: 10px;
+    padding:6px 5px;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    background-color: #cfcfcf;
+}
+.container__title--cancion input:hover{
+    background-color: red;    
 }
 .cancion__target{
     border-bottom: 3px solid black;
-    padding:20px;
     cursor: pointer;
     
 }
+.cancion__target p{
+ padding: 5px 0px 15px 10px;
+    
+}
+.cancion__target h3{
+    padding: 15px 0px 0 10px;
+
+       
+   }
 .cancion__target h2{
     text-align: center;
 
@@ -67,8 +94,7 @@ input[type="search"]{
 }
 .modal-verCancion{
     display: flex;
-    margin: 60px 0;
-    padding:0 10px;
+    padding:0 15px;
 }
 
 /* .modal-verCancion aside{
@@ -81,8 +107,9 @@ input[type="search"]{
 }
 
 .modal-verCancion p{
-    padding:20px 40px 0 0;
+    padding:20px 0;
     line-height: 50px;
+    overflow-wrap: break-word;
 }
 /*  */
 
@@ -96,10 +123,11 @@ input[type="search"]{
     left: 0;
     top: 0;
     width: 100%; 
-    height: 100%; 
     overflow: auto;
+    height: 100%; 
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4); 
+    animation: mostrarModal .3s;
   }
   
   /* Modal Content/Box */
@@ -108,15 +136,19 @@ input[type="search"]{
     margin: 15px auto; 
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; 
+    width: 90%; 
+  }
+  .container__close{
+    display: flex;
+    justify-content: end;
   }
   
   .close,
   .close2,
-  .close3  {
+  .close3,
+  .close4  {
     color: #292ec3;
     font-family: monospace;
-    float: right;
     font-size: 50px;
     font-weight: bold;
     margin-right: 20px;
@@ -192,30 +224,28 @@ em{
     background-color: #1e33d4;
     color:white;
     border-radius: 100px;
-    padding:4px 10px;
+    padding:3px 7px;
     font-family: monospace;
     text-transform: capitalize;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 17px;
+    font-size: 15px;
 
 }
 .container__cancion--info{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin:auto;
 }
 .container__acorde{
-    margin:40px 20px;
+    margin:0px 5px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.crearAcorde{
-    margin:0px !important;
-   
-}
+
 .crearAcorde .mastil{
     background-color: #aeaeae;
     width: 180px;
@@ -234,6 +264,7 @@ em{
     display: flex;
     justify-content: center;
     align-items: center;
+   
 
 }
 .punto{
@@ -247,6 +278,28 @@ em{
 /* .container__acorde--create{
     background-color: #292ec3;
 } */
+.btnGeneral{
+    padding:10px 15px;
+    border-radius: 5px;
+    background-color: #1e33d4;
+    color:white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 16px;
+    border:2px solid #1e33d4;
+    margin-bottom: 20px;
+    cursor: pointer;
+
+
+}
+.btnGeneral:hover{
+    background-color: #0d119a;
+    
+
+}
+.crearAcorde{
+   display: flex;
+   flex-wrap: wrap;
+}
 .primer__traste{
     background-color: red;
     padding:2px 5px;
@@ -319,31 +372,25 @@ em{
     padding:10px;
     font-size: 16px;
     outline: none;
-    margin:20px 10px;
+    margin:10px ;
 }
 .modal-crearCancion textarea{
     padding:10px;
-    width: 100%;
-    margin:0 auto;
+    width: 400px;
+    margin:10px auto;
     height: 200px;
     outline: none;
     resize: none;
     font-size: 16px;
 }
-.modal-crearCancion input[type=button]{
-    padding:10px 15px;
-    font-size: 16px;
-    outline: none;
-    background-color: #1e33d4;
-    color:white;
-    margin:20px 10px;
-    border: none;
-    cursor: pointer;
+#myModal-CrearCancionModal{
+    padding:20px;
 }
 .lista__acordes{
+    width:400px;
+    overflow-x: scroll;
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    margin:0 auto;
 }
 .lista__acordes li{
     background-color: #1e33d4;
@@ -363,13 +410,13 @@ em{
 }
 .container__acordes--seleccionar{
     margin-top: 0px;
-    width: 70%;
+  
 }
 .container__acordes--seleccionar ul{
     margin-top: 20px;
 }
 .container__acordes--pintar{
-    margin-left: 30px;
+    padding:20px;
 }
 .container__acordes--pintar p{
     margin-top: 20px;
@@ -390,17 +437,20 @@ em{
     top:-25px;
     left:-30px;
 }
+.nota__crear{
+    display: flex;
+    justify-content: center;
+    padding:10px;
+}
 .nota__crear input{
-    width: 70px;
     padding:10px 15px;
     outline: none;
-    margin: 0 20px;
+    margin: 10px 20px;
 }
 .modal-CrearAcorde {
     margin: 50px 0;
 }
 .container__acorde--info{
-    margin-top: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -453,6 +503,19 @@ em{
     left:-300px;
 
 }
+.container__crearCancion{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  
+}
+.container__crearCancion h2{
+    text-align: center;
+}
+.container__crearCancion h3{
+    margin-top: 20px;
+}
 @keyframes mostrarMenuAnimation {
     0%{left:-300px}
     100%{left:0}
@@ -462,3 +525,104 @@ em{
     100%{left:-300px}
     
 }
+@keyframes mostrarModal {
+    0%{opacity: 0;
+        margin-top: 400px;}
+    100%{opacity:1;
+    margin-top: 0;}
+    
+}
+.ocultarModal{
+    animation: ocultarModal .3;
+}
+@keyframes ocultarModal {
+    0%{opacity:1;
+    margin-top: 0;}
+    100%{opacity: 0;
+        margin-top: 400px;}
+    
+}
+.container__acordes--banner{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 90%;
+    padding-top: 30px;
+    background-color: #e0e0e0;
+    overflow-x: scroll;
+    display: flex;
+    border-top-left-radius: 10px;
+}
+.container__dates--cancion {
+    margin: 0 auto;
+    display: flex !important;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+/* RESPONSIVE */
+@media (max-width:530px)  {
+    .lista__acordes{
+        width:200px;
+    }
+    .home__container{
+        width: 100% !important; 
+        padding:20px 0px;
+    }
+    .home__container div{
+    }
+    .cancion__target{
+        margin: 0 10px;
+    }
+    .container__search{
+        margin:0 10px !important;
+    }
+    .modal {
+        display: none;
+        position: fixed; 
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width:100%;
+        height: 100%; 
+        overflow-y:scroll;
+        overflow-x: hidden;
+
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0,0.4); 
+        animation: mostrarModal .3s;
+        margin:0 auto !important;
+      }
+      
+      /* Modal Content/Box */
+      .modal-content {
+        background-color: #fefefe;
+        margin: 0 auto !important; 
+        border: 1px solid #888;
+        width: 100%; 
+        padding:0;
+
+      }
+  
+     
+      .container__crearCancion{
+       
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .container__crearCancion h2{
+        text-align: center;
+    
+    }
+    .container__crearCancion{
+        width: 100%;
+
+    }
+    .container__crearCancion textarea{
+        width: 100%;
+    }
+    
+}
+/* /RESPONSIVE */

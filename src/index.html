@@ -11,12 +11,13 @@
         <div>
             <h1>GUITARAPP</h1>
         </div>
-        <div><span class="menu " id="btnMenu">☰</span></div>
+        <div><span class="menu " id="btnMenu" title="Barra de acciones">☰</span></div>
     </header>
     <main>
         <section class="home__container">
-            <div>
-                <input type="search" name="" id="" placeholder="Buscar cancion...">
+            
+            <div class="container__search">
+                <input type="search" name="" id="searchCancion" placeholder="Buscar canción..." title="Buscar canción">
             </div>
            
             <section class="lista__canciones" id="listaCanciones">
@@ -28,30 +29,29 @@
     <footer>
     </footer>
 
-    <!-- <button id="myBtn-VerCancion">V</button>
-    <button id="myBtn-CrearCancion">C</button>
-    <button id="myBtn-CrearAcorde">Camo</button> -->
+
 
     
 <!-- The Modals-->
     <div id="myModal-VerCancion" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
+           <div class="container__close"> <span class="close" title="Cerrar">&times;</span> </div>
             <div class="container__cancion--info">
                 <div id="verCancionContent" class="modal-verCancion">
                     <!-- JS -->
                     
                 </div>
-                <section class="container__mastil" id="container__notas">
-                    Espera por favor...
-                </section>
+             
+            </div>
+            <div class="container__acordes--banner " id="container__notas">
+                acordes here
             </div>
         </div>
     </div>
 
-    <div id="myModal-CrearAcorde" class="modal">
+    <div id="myModal-CrearAcorde" class="modal ">
         <div class="modal-content">
-            <span class="close3">&times;</span>
+            <div class="container__close"> <span class="close3" title="Cerrar">&times;</span> </div>
             <div class="container__acorde--info">
                 <div>
                     <h1>Crear Acorde</h1>
@@ -61,9 +61,9 @@
                    
                      <div class="container__acorde crearAcorde">
                             <div class="nota__crear">
-                                <input type="text" placeholder="Acorde" id="nombreAcordeCrear">
+                                <input type="text" placeholder="Acorde" id="nombreAcordeCrear" title="Nombre acorde">
                             </div>
-                            <span class="primer__trasteCrear"><input type="number" value="1" id="primerTrasteCrear"></span>
+                            <span class="primer__trasteCrear"><input type="number" value="1" id="primerTrasteCrear" title="Primer traste del acorde"></span>
                             <div class="mastil" id="mastilCrearAcorde">
                             <div class="traste">
                                 <div class="punto" id="crearAcorde24"></div>
@@ -103,8 +103,8 @@
                 </div>
                 <div >
                     <!-- JS -->
-                    <input type="button" value="Limpiar" class="buttonLimpiarAcorde btnGeneral" id="btnLimpiarAcorde">
-                    <input type="button" value="Guardar" class="buttonGuardarAcorde btnGeneral" id="btnGuardarAcorde">
+                    <input type="button" value="Limpiar" title="Limpiar" class="buttonLimpiarAcorde btnGeneral" id="btnLimpiarAcorde">
+                    <input type="button" value="Guardar" title="Guardar acorde" class="buttonGuardarAcorde btnGeneral" id="btnGuardarAcorde">
 
                 </div>
            <!--      <section class="container__mastil" id="container__crearAcorde">
@@ -114,15 +114,74 @@
         </div>
     </div>
 
+    <div id="myModal-verAcorde" class="modal ">
+        <div class="modal-content">
+            <div class="container__close"> <span class="close4" title="Cerrar">&times;</span> </div>
+            <div class="container__verAcorde--info">
+                <div>
+                    <h1>Explorar Acordes</h1>
+                    <p>Explora y aprende nuevos acordes aqui:</p>
+                </div>
+                <div id="verAcordeContent" class="modal-verAcorde">
+                    <section id="containerAcordesVer" class="">
+                        <div class="container__acordes--seleccionar">
+                            <h3>Acordes:</h3>
+                            <ul class="lista__acordes" id="listaAcordesVerHTML">
+                            </ul>
+                            <div>
+                                <div class="container__acorde crearAcorde" id="containerAcordeVer">
+                                    <div class="mastil" id="mastil">
+                                        <div class="traste">
+                                            <div class="punto" id="Ver24"></div>
+                                            <div class="punto" id="Ver23"></div>
+                                            <div class="punto" id="Ver22"></div>
+                                            <div class="punto" id="Ver21"></div>
+                                            <div class="punto" id="Ver20"></div>
+                                            <div class="punto" id="Ver19"></div>
+                                        </div>
+                                        <div class="traste">
+                                            <div class="punto" id="Ver18"></div>
+                                            <div class="punto" id="Ver17"></div>
+                                            <div class="punto" id="Ver16"></div>
+                                            <div class="punto" id="Ver15"></div>
+                                            <div class="punto" id="Ver14"></div>
+                                            <div class="punto" id="Ver13"></div>
+                                        </div>
+                                        <div class="traste">
+                                            <div class="punto" id="Ver12"></div>
+                                            <div class="punto" id="Ver11"></div>
+                                            <div class="punto" id="Ver10"></div>
+                                            <div class="punto" id="Ver9"></div>
+                                            <div class="punto" id="Ver8"></div>
+                                            <div class="punto" id="Ver7"></div>
+                                        </div>
+                                        <div class="traste">
+                                            <div class="punto" id="Ver6"></div>
+                                            <div class="punto" id="Ver5"></div>
+                                            <div class="punto" id="Ver4"></div>
+                                            <div class="punto" id="Ver3"></div>
+                                            <div class="punto" id="Ver2"></div>
+                                            <div class="punto" id="Ver1"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <div id="myModal-CrearCancion" class="modal">
         <div class="modal-content">
-            <span class="close2">&times;</span>
+            <div class="container__close"> <span class="close2" title="Cerrar">&times;</span> </div>
             <div id="crearCancionContent" class="modal-crearCancion">
                 <section class="">
 
-                    <h2>Crea una cancion</h2>
                     <div class="container__crearCancion" id="containerCrearLetraCancion">
+                        <h2>Crea una cancion</h2>
                         <h3>Contenido:</h3>
                         <div class="container__dates--cancion">
                             <input type="text"  name="tituloInput" placeholder="Titulo*" id="tituloInput">
@@ -131,7 +190,7 @@
                         <div>
                             <textarea name="letraInput"  placeholder="Letra de cancion*" id="letraInput"></textarea>
                         </div>
-                        <input type="button" value="Guardar" class="buttonGuardarLetra" id="btnGuardarLetra">
+                        <input type="button" value="Continuar" class="buttonGuardarLetra btnGeneral" id="btnGuardarLetra">
                     </div>
                 </section>
                 <section id="containerAcordesLetra" class="">
@@ -186,8 +245,8 @@
                     </div>
                     <div>
 
-                        <input type="button" value="Volver" class="buttonGuardarLetra" id="btnVolverLetra">
-                        <input type="button" value="Guardar" class="buttonGuardarLetra" id="btnGuardarCancion">
+                        <input type="button" value="Volver" title="Volver"class="buttonGuardarLetra btnGeneral" id="btnVolverLetra">
+                        <input type="button" value="Guardar" title="Guardar" class="buttonGuardarLetra btnGeneral" id="btnGuardarCancion">
                     </div>
 
                 </section>
@@ -199,14 +258,15 @@
         <ul>
             <li>Crear cancion</li>
             <li>Crear acorde</li>
-            <li>Explorar Acordes</li>
+            <li>Explorar acordes</li>
 
         </ul>
     </section>
     
 <!-- /The Modals-->
-  
-    <script src="index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script  src="index.js"></script>
+
 
 </body>
 </html>

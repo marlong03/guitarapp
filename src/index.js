@@ -1,22 +1,55 @@
 /* HOME */
+
 //PINTAR CANCIONES EN HOME ----------------
+let searchCancion = document.getElementById('searchCancion')
+searchCancion.addEventListener('keyup',function(e){
+    console.log(searchCancion.value);
+    traerCanciones(searchCancion.value)
+})
+
 const listaCancionesHTML = document.getElementById('listaCanciones')
 let listaCanciones = []
-async function traerCanciones() {
+
+async function traerCanciones(busqueda = null) {
+
     try {
       const response = await fetch('http://localhost:8080/cancion/get/all');
       const canciones = await response.json();
-      listaCanciones = canciones;
+      listaCanciones = canciones.reverse();
     } catch (error) {
       console.log('Tuvimos problemas para traer datos');
     }
     if(listaCanciones.length != 0){
-        for(let cancion of listaCanciones){
-            listaCancionesHTML.innerHTML += 
-            '<article class="cancion__target" id='+cancion.id+'>'+
+        if(busqueda == null){
+            listaCancionesHTML.innerHTML = ''
+
+            for(let cancion of listaCanciones){
+                listaCancionesHTML.innerHTML += 
+                '<article class="cancion__target" id='+cancion.id+'>'+
                 '<h3 id='+cancion.idcancion+'>'+cancion.nombre+'</h3>'+
                 '<p id='+cancion.idcancion+'>'+cancion.autor+'</p>'+
-            '</article>'
+                '</article>'
+            }
+        }else{
+            listaCancionesHTML.innerHTML = ''
+            let listaCancionesFiltrada = []
+            listaCanciones.filter(cancion => {
+                if(cancion.nombre.toLowerCase().includes(busqueda.toLowerCase()) || cancion.autor.toLowerCase().includes(busqueda.toLowerCase()) || cancion.letra.toLowerCase().includes(busqueda.toLowerCase()) ){
+                    listaCancionesFiltrada.push(cancion)
+                }
+            })
+            if(listaCancionesFiltrada.length == 0){
+                listaCancionesHTML.innerHTML = '<p>¡Ups! No hemos encontrado lo que buscas</p>'
+            }
+            console.log(listaCancionesFiltrada);
+            for(let cancion of listaCancionesFiltrada){
+                listaCancionesHTML.innerHTML += 
+                '<article class="cancion__target" id='+cancion.id+'>'+
+                '<h3 id='+cancion.idcancion+'>'+cancion.nombre+'</h3>'+
+                '<p id='+cancion.idcancion+'>'+cancion.autor+'</p>'+
+
+                '</article>'
+            }
         }
     }
   }
@@ -85,7 +118,59 @@ async function traerAcordesCancion(id){
     console.log(ListaAcordesCancion);
 }
 ///PINTAR CANCIONES EN HOME ----------------
+function borrarCancion(id){
+    let borrarCancionprompt 
+    Swal.fire({
+        title: '¿Seguro quieres eliminar esta canción?',
+        text: "No podras recuperar esta información",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Estoy seguro'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            fetch('http://localhost:8080/cancion/delete/'+id,{
+            method:'DELETE',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json'
+                }
+        })
+        .then(x =>{
+            let timerInterval
+            Swal.fire({
+            title: 'Guardando',
+            timer: 800,
+            timerProgressBar: true,
+            didOpen: () => {
+                Swal.showLoading()
+                timerInterval = setInterval(() => {
+                }, 100)
+            },
+            willClose: () => {
+                clearInterval(timerInterval)
+            }
+            }).then(y =>{
 
+                modalVerCancion.style.display = "none";
+                traerCanciones()
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'success',
+                    title: 'Canción eliminada',
+                    showConfirmButton: false,
+                    timer: 700
+                  })
+            })
+
+        })
+          
+        }
+      })
+        
+
+}
 //ACCIONAR MODAL VER CANCION ---------------
 listaCancionesHTML.addEventListener('click',async function(evento){
     let cancion = await accionarVerCancion(evento.target.id)
@@ -94,10 +179,15 @@ listaCancionesHTML.addEventListener('click',async function(evento){
         let letras = await pintarAcordesEnTexto(cancion.idcancion,cancion.letra)
         verCancionContent.innerHTML =
         '<article>'+
-        '<h2>'+cancion.nombre+'</h2>'+
+        '<div class="container__title--cancion"><h2>'+cancion.nombre+'</h2> <input type="button" title="Borrar cancion"value="🗑️" id="borrar'+cancion.idcancion+'" onClick="borrarCancion()"> </div>'+
         '<p>'+letras+'</p>'+
         '</article>'
-        pintarAcordes(cancion.idcancion)  //----------
+        
+        await pintarAcordes(cancion.idcancion)  //----------
+        document.getElementById('borrar'+cancion.idcancion)
+        .addEventListener('click',function(){
+            borrarCancion(cancion.idcancion);
+        })
     }
 })
 
@@ -120,13 +210,12 @@ async function pintarAcordesEnTexto(id,texto){
 
 
 /* MOSTRAR ACORDES DE CANCION */
-function pintarAcordes(id){
+async function pintarAcordes(id){
     let listaPulsadasDef = []
     let containerNotas = document.getElementById('container__notas')
     containerNotas.innerHTML = ''
-    fetch('http://localhost:8080/posicion/filtro/'+id)
-    .then(x =>x.json())
-    .then(res => {
+    const response = await fetch('http://localhost:8080/posicion/filtro/'+id)
+    const res = await response.json()
         listaPulsadasDef = res
         let listaNombreAcordes = []
         let listaNoRepetida = []
@@ -147,6 +236,8 @@ function pintarAcordes(id){
             });
             listaDeAcordes.push(listaAqui)
         });
+        console.log(listaAcordes);
+
         listaDeAcordes.forEach(acordes => {
             console.log(acordes);
             containerNotas.innerHTML +=
@@ -195,7 +286,9 @@ function pintarAcordes(id){
                 document.getElementById(acordes[0][0] + element[2]).style.backgroundColor = "#1e33d4"
             });
         })
-    })
+    
+
+    
 }
 /* /MOSTRAR ACORDES DE CANCION */
 
@@ -212,19 +305,18 @@ async function filtrarCancion(idCancion){
 /* CREAR CANCION */
 
 let listaPosicionAcordes = []
-function agregarAcordeALetra(letraCancion){
+async function agregarAcordeALetra(letraCancion){
     console.log(letraCancion);
     let acordeSeleccionado = '';
     let listaAcordesHTML = document.getElementById('listaAcordesHTML')
     listaAcordesHTML.innerHTML = ''
-    fetch('http://localhost:8080/acorde/get/all')
-    .then(x =>x.json())
-    .then(acordes => {
+    const response = await fetch('http://localhost:8080/acorde/get/all')
+    const acordes = await response.json()
+    
         acordes.forEach(acorde =>{
             listaAcordesHTML.innerHTML += '<li id="'+acorde.nombre+'">'+acorde.nombre+'</li>'
         })
-    })
-    .catch(err => { console.log(err)})
+
     listaAcordesHTML.addEventListener('click',(e)=>{
        acordeSeleccionado =  e.srcElement.innerText
         console.log(acordeSeleccionado);
@@ -271,7 +363,22 @@ let btnGuardarCancion = document.getElementById('btnGuardarCancion')
 
 
 function guardarPosiciones(){
-    fetch('http://localhost:8080/posicion/post/all',{
+    let timerInterval
+    Swal.fire({
+    title: 'Guardando',
+    timer: 800,
+    timerProgressBar: true,
+    didOpen: () => {
+        Swal.showLoading()
+        timerInterval = setInterval(() => {
+        }, 100)
+    },
+    willClose: () => {
+        clearInterval(timerInterval)
+    }
+    }).then((result) => {
+    if (result.dismiss === Swal.DismissReason.timer) {
+        fetch('http://localhost:8080/posicion/post/all',{
                 method:'POST',
                 body:JSON.stringify(listaPosicionAcordes),
                 mode: 'cors',
@@ -281,11 +388,18 @@ function guardarPosiciones(){
             })
             .then(x =>x.json())
             .then(x =>{
+                traerCanciones()
                 console.log(x)
                 console.log("se creo una nueva cancion");
+                modalCrearCancion.style.display = 'none'
+                        //aqui actualizar lista canciones
+
             })
              //aqui falta hacer que pasa si no se envio con exito la cancion
             .catch(err =>{console.error(err)})
+    }
+    })
+    
 }
 
 
@@ -322,7 +436,7 @@ function crearCancion(){
             .then(x =>{
                 console.log(x)
                 cancionCreada = x
-                agregarAcordeALetra(x.letra)
+                agregarAcordeALetra(letraInput.value)
 
 
             })
@@ -367,6 +481,33 @@ function acordeAPintar(){
     })
 }
 acordeAPintar()
+async function obtenerA(){
+   await traerAcordes()
+   return listaAcordes
+}
+obtenerA()
+async function explorarAcordeAPintar(){
+   
+    let listaAcordesVerHTML = document.getElementById('listaAcordesVerHTML')
+   ;(await obtenerA()).forEach(acorde =>{
+    listaAcordesVerHTML.innerHTML += '<li id="'+acorde.idacorde+'">'+acorde.nombre+'</li>'
+   })
+    listaAcordesVerHTML.addEventListener('click',function(e){
+        for(let idVer = 1;idVer <= 24;idVer++){
+            document.getElementById('Ver'+idVer).style.backgroundColor = '#cacaca'
+        }
+        fetch('http://localhost:8080/pulsada/get/all')
+        .then(x => x.json())
+        .then(res =>{
+            res.forEach(pulsada => {
+                if(pulsada.idacorde.nombre == e.srcElement.innerText){
+                    document.getElementById('Ver'+pulsada.pulsada).style.backgroundColor = 'blue'
+                }
+            });
+        })
+    })
+}
+    explorarAcordeAPintar()
 
 
 /* /CREAR CANCION */
@@ -375,9 +516,11 @@ let modalVerCancion = document.getElementById("myModal-VerCancion");
 let btnVerCancion = document.getElementById("myBtn-VerCancion");
 let spanVerCancion = document.getElementsByClassName("close")[0];
 async function accionarVerCancion(idCancion) {
+    
     modalVerCancion.style.display = "block";
+    
     let cancion = await filtrarCancion(idCancion)
-    traerAcordesCancion(idCancion)
+    await traerAcordesCancion(idCancion)
   return cancion 
 }
 
@@ -387,24 +530,39 @@ spanVerCancion.onclick = function() {
 }
 
 
+var modalVerAcorde = document.getElementById("myModal-verAcorde");
+var spanVerAcorde = document.getElementsByClassName("close4")[0];
+
+spanVerAcorde.onclick = function() {
+    modalVerAcorde.style.display = "none";
+  }
+  function accionarVerAcorde() {
+    accionarMenu()
+    modalVerAcorde.style.display = "block";
+    //aqui falta limpiar los campos
+  }
 /* ------------------------------------------------------------- */
 var modalCrearCancion = document.getElementById("myModal-CrearCancion");
+
 var btnCrearCancion = document.getElementById("myBtn-CrearCancion");
 var spanCrearCancion = document.getElementsByClassName("close2")[0];
 function accionarCrearCancion() {
+    accionarMenu()
+
   modalCrearCancion.style.display = "block";
   //aqui falta limpiar los campos
 }
+
+
 spanCrearCancion.onclick = function() {
   modalCrearCancion.style.display = "none";
 }
 
-/* ---------------- */
 
+/* ---------------- */
 let mastilCrearAcorde = document.getElementById('mastilCrearAcorde')
 let nombreAcordeCrear = document.getElementById('nombreAcordeCrear')
 let primerTrasteCrear = document.getElementById('primerTrasteCrear')
-
 let listaPulsadasAcorde = []
 mastilCrearAcorde.addEventListener('click',function(e){
     //hacer que no se multipliquen los obj metidos en listapUSALDAAcordes
@@ -414,6 +572,8 @@ mastilCrearAcorde.addEventListener('click',function(e){
         listaPulsadasAcorde.push(e.target.id.replace('crearAcorde',''))
     }
 })
+
+
 function resetCamposCrearAcorde(){
     nombreAcordeCrear.value = ''
     primerTrasteCrear.value = '1'
@@ -421,13 +581,15 @@ function resetCamposCrearAcorde(){
         document.getElementById('crearAcorde'+i).style.backgroundColor = '#cacaca';
     }
 }
+
+
 let btnLimpiarAcorde = document.getElementById('btnLimpiarAcorde')
 btnLimpiarAcorde.addEventListener('click',function(){
     resetCamposCrearAcorde()
 })
 
+
 function guardarAcorde(){
-    
     let objAcorde = {
         idacorde:0,
         nombre:nombreAcordeCrear.value,
@@ -468,7 +630,31 @@ function guardarAcorde(){
                       }
                 })
                 .then(y => y.json())
-                .then(res =>{console.log(res)})
+                .then(res =>{
+                    
+                    let timerInterval
+                    Swal.fire({
+                    title: 'Guardando',
+                    timer: 800,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading()
+                        timerInterval = setInterval(() => {
+                        }, 100)
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval)
+                    }
+                    }).then((result) => {
+                    if (result.dismiss === Swal.DismissReason.timer) {
+                        explorarAcordeAPintar()
+                        traerAcordes()
+                        traerCanciones()
+                        modalCrearAcorde.style.display = 'none'
+                        //aqui actualizar lista acordes
+                    }
+                    })
+                })
                 .catch(err => {console.log(err)})
 
             })
@@ -476,20 +662,29 @@ function guardarAcorde(){
             .catch(err =>{console.error(err)})
 
 }
+
+
 let btnGuardarAcorde = document.getElementById('btnGuardarAcorde') 
 btnGuardarAcorde.addEventListener('click',function(){
    guardarAcorde()
 })
+
+
 var modalCrearAcorde = document.getElementById("myModal-CrearAcorde");
 var spanCrearAcorde = document.getElementsByClassName("close3")[0];
-
 function accionarCrearAcorde() {
+    accionarMenu()
+
   modalCrearAcorde.style.display = "block";
   //aqui falta limpiar los campos
 }
+
+
 spanCrearAcorde.onclick = function() {
   modalCrearAcorde.style.display = "none";
 }
+
+
 window.onclick = function(event) {
   if (event.target == modalCrearAcorde) {
     modalCrearAcorde.style.display = "none";
@@ -499,15 +694,20 @@ window.onclick = function(event) {
   }
 }
 
-let containerMenu = document.getElementById('containerMenu')
-let btnMenu = document.getElementById('btnMenu')
-btnMenu.addEventListener('click',function(){
+function accionarMenu(){
     if(containerMenu.className.includes('mostrarMenu')){
         containerMenu.classList.toggle('ocultarMenu')
     }else{
         containerMenu.classList.toggle('mostrarMenu')
     }
+}
+let containerMenu = document.getElementById('containerMenu')
+let btnMenu = document.getElementById('btnMenu')
+btnMenu.addEventListener('click',function(){
+    accionarMenu()
 })
+
+
 containerMenu.addEventListener('click',function(x){
     console.log(x.target.childNodes[0].nodeValue);
     if(x.target.childNodes[0].nodeValue == 'Crear cancion'){
@@ -516,22 +716,8 @@ containerMenu.addEventListener('click',function(x){
     else if(x.target.childNodes[0].nodeValue == 'Crear acorde'){
         accionarCrearAcorde()
     }
+    else if(x.target.childNodes[0].nodeValue == 'Explorar acordes'){
+        accionarVerAcorde()
+    }
 })
 ///ACCIONAR MODALES
-
-//Le pasamos un texto y nos devolvera la posicion y la palabra que seleccionemos
-
-/* 
-let parrafoText = 'Lorem ipsum dolor sit amet consectetur adipisicing elit Lorem ipsum dolor sit amet consectetur adipisicing elit';
-    let parrafo = parrafoText.split(' ')
-let containerParrafo = document.getElementById('containerParrafo')
-
-for(let i = 0;i < parrafo.length;i++){
-    containerParrafo.innerHTML += '<span id='+ i + '.' + parrafo[i] + ' name=' + parrafo[i] + 'dir="2">' + parrafo[i] + ' ' + '</span>';
-}
-acorde = 'em'
-containerParrafo.addEventListener('click',(x)=>{
-    let datos = x.target.id.split('.')
-   document.getElementById(x.target.id).innerHTML += '<em>'+acorde+'</em>'
-})
- */
