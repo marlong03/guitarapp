@@ -58,7 +58,7 @@ input[type="search"]{
     align-items: center;
     justify-content: space-between;
 }
-.container__title--cancion input{
+.btnBorrar{
     margin-left: 10px;
     padding:6px 5px;
     border-radius: 100px;
@@ -67,7 +67,16 @@ input[type="search"]{
     font-size: 18px;
     background-color: #cfcfcf;
 }
-.container__title--cancion input:hover{
+.btnBorrar{
+    margin:0 10px;
+    padding:6px 5px;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    background-color: #cfcfcf;
+}
+.btnBorrar:hover{
     background-color: red;    
 }
 .cancion__target{
@@ -560,6 +569,21 @@ em{
     justify-content: center;
 
 }
+.container__explorar--info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-bottom: 20px;
+}
+#containerAcordeVer{
+    margin: 30px 0;
+}
+#acordePintado{
+    margin-right: 20px;
+}
+
 /* RESPONSIVE */
 @media (max-width:530px)  {
     .lista__acordes{

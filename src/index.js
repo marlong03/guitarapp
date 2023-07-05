@@ -3,7 +3,7 @@
 //PINTAR CANCIONES EN HOME ----------------
 let searchCancion = document.getElementById('searchCancion')
 searchCancion.addEventListener('keyup',function(e){
-    console.log(searchCancion.value);
+   /*  console.log(searchCancion.value); */
     traerCanciones(searchCancion.value)
 })
 
@@ -41,7 +41,7 @@ async function traerCanciones(busqueda = null) {
             if(listaCancionesFiltrada.length == 0){
                 listaCancionesHTML.innerHTML = '<p>¡Ups! No hemos encontrado lo que buscas</p>'
             }
-            console.log(listaCancionesFiltrada);
+            /* console.log(listaCancionesFiltrada); */
             for(let cancion of listaCancionesFiltrada){
                 listaCancionesHTML.innerHTML += 
                 '<article class="cancion__target" id='+cancion.id+'>'+
@@ -110,12 +110,11 @@ async function traerAcordesCancion(id){
         listaAcordes.forEach(element => {
             ListaAcordesCancion.push(Object.assign({}, element))
         });
-        console.log(ListaAcordesCancion);
     })
     .catch(err =>{
         console.log('tuvimos problemas para traer datos');
     })
-    console.log(ListaAcordesCancion);
+/*     console.log(ListaAcordesCancion); */
 }
 ///PINTAR CANCIONES EN HOME ----------------
 function borrarCancion(id){
@@ -173,13 +172,15 @@ function borrarCancion(id){
 }
 //ACCIONAR MODAL VER CANCION ---------------
 listaCancionesHTML.addEventListener('click',async function(evento){
+    
     let cancion = await accionarVerCancion(evento.target.id)
     let verCancionContent = document.getElementById('verCancionContent')
     if(cancion){
+       
         let letras = await pintarAcordesEnTexto(cancion.idcancion,cancion.letra)
         verCancionContent.innerHTML =
         '<article>'+
-        '<div class="container__title--cancion"><h2>'+cancion.nombre+'</h2> <input type="button" title="Borrar cancion"value="🗑️" id="borrar'+cancion.idcancion+'" onClick="borrarCancion()"> </div>'+
+        '<div class="container__title--cancion"><h2>'+cancion.nombre+'</h2> <input  class="btnBorrar"type="button" title="Borrar cancion"value="🗑️" id="borrar'+cancion.idcancion+'" onClick="borrarCancion()"> </div>'+
         '<p>'+letras+'</p>'+
         '</article>'
         
@@ -198,11 +199,10 @@ async function pintarAcordesEnTexto(id,texto){
     .then(x => x.json())
     .then(res =>{
         let arrayTexto = texto.split(' ')
-        console.log(arrayTexto);
         res.forEach(posicion =>{
             arrayTexto[posicion.posicion] += '<span class="text__float">'+posicion.idacorde.nombre+'</span>'   
         })
-        console.log(arrayTexto.join(' '));
+       
         respuesta = arrayTexto.join(' ')
     })
     return respuesta
@@ -236,10 +236,10 @@ async function pintarAcordes(id){
             });
             listaDeAcordes.push(listaAqui)
         });
-        console.log(listaAcordes);
+    /*     console.log(listaAcordes); */
 
         listaDeAcordes.forEach(acordes => {
-            console.log(acordes);
+            /* console.log(acordes); */
             containerNotas.innerHTML +=
             '<div class="container__acorde">'+
                 '<div class="nota">'+
@@ -306,7 +306,7 @@ async function filtrarCancion(idCancion){
 
 let listaPosicionAcordes = []
 async function agregarAcordeALetra(letraCancion){
-    console.log(letraCancion);
+/*     console.log(letraCancion); */
     let acordeSeleccionado = '';
     let listaAcordesHTML = document.getElementById('listaAcordesHTML')
     listaAcordesHTML.innerHTML = ''
@@ -314,12 +314,12 @@ async function agregarAcordeALetra(letraCancion){
     const acordes = await response.json()
     
         acordes.forEach(acorde =>{
-            listaAcordesHTML.innerHTML += '<li id="'+acorde.nombre+'">'+acorde.nombre+'</li>'
+            listaAcordesHTML.innerHTML += '<li id="'+acorde.idacorde+'">'+acorde.nombre+'</li>'
         })
 
     listaAcordesHTML.addEventListener('click',(e)=>{
        acordeSeleccionado =  e.srcElement.innerText
-        console.log(acordeSeleccionado);
+       /*  console.log(acordeSeleccionado); */
     })
     let parrafo = letraCancion.split(' ')
     let containerParrafo = document.getElementById('containerParrafo')
@@ -342,9 +342,8 @@ async function agregarAcordeALetra(letraCancion){
                         idacorde:{idacorde:listaAcordes.filter(x =>x.nombre == acordeSeleccionado)[0].idacorde}
                     }
                     listaPosicionAcordes.push(posicion)
-                    console.log(listaPosicionAcordes);
+                    /* console.log(listaPosicionAcordes); */
                 }else{
-                    console.log();
                     if(x.target.id != "containerParrafo"){
                         x.target.children[0].remove()
                     }
@@ -389,8 +388,8 @@ function guardarPosiciones(){
             .then(x =>x.json())
             .then(x =>{
                 traerCanciones()
-                console.log(x)
-                console.log("se creo una nueva cancion");
+            /*     console.log(x)
+                console.log("se creo una nueva cancion"); */
                 modalCrearCancion.style.display = 'none'
                         //aqui actualizar lista canciones
 
@@ -414,6 +413,7 @@ function crearCancion(){
     let letraInput = document.getElementById('letraInput')
     
     containerAcordesLetra.style.display = 'none'
+    acordeAPintar()
     btnGuardarLetra.addEventListener('click',function(){
         if(tituloInput.value != '' && autorInput.value != '' && letraInput.value != '' ){
             containerCrearLetraCancion.style.display = 'none';
@@ -434,7 +434,7 @@ function crearCancion(){
             })
             .then(x =>x.json())
             .then(x =>{
-                console.log(x)
+                
                 cancionCreada = x
                 agregarAcordeALetra(letraInput.value)
 
@@ -465,11 +465,11 @@ crearCancion()
 function acordeAPintar(){
     let listaAcordesHTML = document.getElementById('listaAcordesHTML')
     listaAcordesHTML.addEventListener('click',function(e){
-        console.log(e.srcElement.innerText);
+        console.log(e);
         for(let idCrear = 1;idCrear <= 24;idCrear++){
             document.getElementById('Crear'+idCrear).style.backgroundColor = '#cacaca'
         }
-        fetch('http://localhost:8080/pulsada/get/all')
+        fetch('http://localhost:8080/pulsada/acorde/get/'+e.srcElement.id)
         .then(x => x.json())
         .then(res =>{
             res.forEach(pulsada => {
@@ -480,26 +480,111 @@ function acordeAPintar(){
         })
     })
 }
-acordeAPintar()
-async function obtenerA(){
+
+async function actualizarListaAcordes(){
    await traerAcordes()
    return listaAcordes
 }
-obtenerA()
+actualizarListaAcordes()
+async function borrarAcorde(id){
+    console.log(id);
+    let borrarAcordeprompt 
+    Swal.fire({
+        title: '¿Seguro quieres eliminar este acorde?',
+        text: "No podras recuperar esta información",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Estoy seguro'
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+            await fetch('http://localhost:8080/acorde/delete/'+id,{
+            method:'DELETE',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json'
+                }
+        })
+        .then(async (x) =>{
+                console.log(x);
+              
+               
+                let timerInterval
+            Swal.fire({
+            title: 'Guardando',
+            timer: 800,
+            timerProgressBar: true,
+            didOpen: async () => {
+                Swal.showLoading()
+                
+                timerInterval = setInterval(() => {
+                }, 100)
+            },
+            willClose:async() => {
+                modalVerAcorde.style.display = "none";
+               
+                await explorarAcordeAPintar()
+                clearInterval(timerInterval)
+               
+                for(let idVer = 1;idVer <= 24;idVer++){
+                    document.getElementById('Ver'+idVer).style.backgroundColor = '#cacaca'
+                }
+                document.getElementById('acordePintado').innerText = ''
+                document.getElementById('primerTrasteAcordePintado').innerText = ''
+             
+            }
+            }).then(x =>{
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'success',
+                    title: 'Acorde eliminado',
+                    showConfirmButton: false,
+                    timer: 700
+                  })
+            })
+                
+               
+                  
+
+            })
+            .catch(err =>{
+                console.log(err)
+            })
+
+          
+        }
+      })
+        
+
+
+}
 async function explorarAcordeAPintar(){
-   
     let listaAcordesVerHTML = document.getElementById('listaAcordesVerHTML')
-   ;(await obtenerA()).forEach(acorde =>{
+   
+    let acordePintado = document.getElementById('acordePintado')
+    let primerTraste = document.getElementById('primerTrasteAcordePintado')
+    let containerMastil = document.getElementById('containerMastil')
+    listaAcordesVerHTML.innerHTML = ''
+    ;(await actualizarListaAcordes()).forEach(acorde =>{
+       console.log(acorde);
+    /* console.log(acorde); */
     listaAcordesVerHTML.innerHTML += '<li id="'+acorde.idacorde+'">'+acorde.nombre+'</li>'
    })
+   
     listaAcordesVerHTML.addEventListener('click',function(e){
+        console.log(e.srcElement.id);
+        containerMastil.innerHTML = '<input type="button" title="Borrar cancion" class="btnBorrar" value="🗑️" id="borrarAcorde'+e.srcElement.id+'" onClick="borrarAcorde('+e.srcElement.id+')">'
+
         for(let idVer = 1;idVer <= 24;idVer++){
             document.getElementById('Ver'+idVer).style.backgroundColor = '#cacaca'
         }
-        fetch('http://localhost:8080/pulsada/get/all')
+        acordePintado.innerText = e.srcElement.innerText
+        fetch('http://localhost:8080/pulsada/acorde/get/'+e.srcElement.id)
         .then(x => x.json())
         .then(res =>{
             res.forEach(pulsada => {
+                primerTraste.innerText = pulsada.idacorde.primertraste
                 if(pulsada.idacorde.nombre == e.srcElement.innerText){
                     document.getElementById('Ver'+pulsada.pulsada).style.backgroundColor = 'blue'
                 }
@@ -516,12 +601,33 @@ let modalVerCancion = document.getElementById("myModal-VerCancion");
 let btnVerCancion = document.getElementById("myBtn-VerCancion");
 let spanVerCancion = document.getElementsByClassName("close")[0];
 async function accionarVerCancion(idCancion) {
-    
+   
+let cancion = await filtrarCancion(idCancion)
+await traerAcordesCancion(idCancion)
+let timerInterval
+Swal.fire({
+title: 'Cargando',
+timer: 800,
+timerProgressBar: true,
+didOpen: async() => {
+  
+   Swal.showLoading()
+   
+   timerInterval = setInterval(() => {
+   }, 100)
+},
+willClose: () => {
+    clearInterval(timerInterval)
     modalVerCancion.style.display = "block";
+
+}
+})
+return cancion
+
+
+  
     
-    let cancion = await filtrarCancion(idCancion)
-    await traerAcordesCancion(idCancion)
-  return cancion 
+    
 }
 
 
@@ -566,7 +672,7 @@ let primerTrasteCrear = document.getElementById('primerTrasteCrear')
 let listaPulsadasAcorde = []
 mastilCrearAcorde.addEventListener('click',function(e){
     //hacer que no se multipliquen los obj metidos en listapUSALDAAcordes
-    console.log(e.target.id);
+    /* console.log(e.target.id); */
     if(nombreAcordeCrear.value != '' && primerTrasteCrear.value != ''){
         document.getElementById(e.target.id).style.backgroundColor = 'blue'
         listaPulsadasAcorde.push(e.target.id.replace('crearAcorde',''))
@@ -595,7 +701,7 @@ function guardarAcorde(){
         nombre:nombreAcordeCrear.value,
         primertraste:parseInt(primerTrasteCrear.value),
     }
-    console.log(objAcorde);
+    /* console.log(objAcorde); */
     fetch('http://localhost:8080/acorde/post',{
                 method:'POST',
                 body:JSON.stringify(objAcorde),
@@ -606,7 +712,7 @@ function guardarAcorde(){
             })
             .then(x =>x.json())
             .then(x =>{
-                console.log(x)
+               /*  console.log(x) */
                 console.log("se creo un nuevo acorde");
                 let idAcordeNuevo = x.idacorde
                 let listaPulsadasGuardar = []
@@ -620,7 +726,7 @@ function guardarAcorde(){
                     }
                     listaPulsadasGuardar.push(objPulsada);
                 })
-                console.log(listaPulsadasGuardar);
+               /*  console.log(listaPulsadasGuardar); */
                 fetch('http://localhost:8080/pulsada/post/all',{
                     method:'POST',
                     body:JSON.stringify(listaPulsadasGuardar),
@@ -709,7 +815,7 @@ btnMenu.addEventListener('click',function(){
 
 
 containerMenu.addEventListener('click',function(x){
-    console.log(x.target.childNodes[0].nodeValue);
+  /*   console.log(x.target.childNodes[0].nodeValue); */
     if(x.target.childNodes[0].nodeValue == 'Crear cancion'){
         accionarCrearCancion()
     }
