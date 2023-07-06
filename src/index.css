@@ -1,7 +1,6 @@
 *{
     margin:0;
     padding:0;
-
 }
 body{
     background-color: #d8d8d8;
@@ -57,7 +56,6 @@ input[type="search"]{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    
 }
 .btnBorrar{
     margin-left: 10px;
@@ -86,20 +84,15 @@ input[type="search"]{
 .cancion__target{
     border-bottom: 3px solid black;
     cursor: pointer;
-    
 }
 .cancion__target p{
  padding: 5px 0px 15px 10px;
-    
 }
 .cancion__target h3{
     padding: 15px 0px 0 10px;
-
-       
    }
 .cancion__target h2{
     text-align: center;
-
 }
 .cancion__target:hover{
     background-color: #292ec3;
@@ -109,25 +102,14 @@ input[type="search"]{
     display: flex;
     padding:0 15px;
 }
-
-/* .modal-verCancion aside{
-    background-color: #d0d0d0;
-    border-radius: 5px;
-    padding: 20px;
-} */
 .modal-verCancion ul{
     list-style: none;
 }
-
 .modal-verCancion p{
     padding:20px 0;
     line-height: 50px;
     overflow-wrap: break-word;
 }
-/*  */
-
-
-
 /* The Modal (background) */
 .modal {
     display: none;
@@ -142,7 +124,6 @@ input[type="search"]{
     background-color: rgba(0,0,0,0.4); 
     animation: mostrarModal .3s;
   }
-  
   /* Modal Content/Box */
   .modal-content {
     background-color: #fefefe;
@@ -178,26 +159,6 @@ input[type="search"]{
     text-decoration: none;
     cursor: pointer;
   }
-  
-
-
-
-
-
-
-
-  /*
-Asignar acorde a un texto
-.container__text{
-    max-width: 500px;
-    font-family: monospace;
-    font-size: 30px;
-    cursor: pointer;
-    line-height: 60px;
-}
-.container__text p {
-  
-}
 em{
     position:absolute;
     padding: 0 5px;
@@ -205,8 +166,6 @@ em{
     margin:-30px -80px ;
     font-size: 20px;
 } */
-
-
 /* acordes ver cancion */
 .mastil{
     background-color: #aeaeae;
@@ -231,8 +190,6 @@ em{
 .nota{
     margin-right: 10px;
 }
-
-
 .nota h2{
     background-color: #1e33d4;
     color:white;
@@ -244,7 +201,6 @@ em{
     justify-content: center;
     align-items: center;
     font-size: 15px;
-
 }
 .container__cancion--info{
     display: flex;
@@ -277,8 +233,6 @@ em{
     display: flex;
     justify-content: center;
     align-items: center;
-   
-
 }
 .punto{
     width: 100%;
@@ -286,11 +240,6 @@ em{
     height: 16%;
     cursor: pointer;
 }
-
-
-/* .container__acorde--create{
-    background-color: #292ec3;
-} */
 .btnGeneral{
     padding:10px 15px;
     border-radius: 5px;
@@ -301,13 +250,9 @@ em{
     border:2px solid #1e33d4;
     margin-bottom: 20px;
     cursor: pointer;
-
-
 }
 .btnGeneral:hover{
     background-color: #0d119a;
-    
-
 }
 .crearAcorde{
    display: flex;
@@ -325,7 +270,6 @@ em{
     top:-40px;
     right: -90px;
     font-size: 12px;
-
 }
 .primer__trasteCrear{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -340,7 +284,6 @@ em{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 12px;
     color:black;
-    
     width: 30px;
     outline: none;
     border:none;
@@ -363,23 +306,11 @@ em{
     top:-20px;
     left:-10px;
 }
-/* .container__acorde--seleccionar p {
-    margin-top: 10px;
-    line-height: 50px;
-    font-size: 20px;
-    cursor: pointer;
-} */
-
-
-
-
-/*  */
 .modal-crearCancion section{
     display: flex ;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
 }
 .modal-crearCancion section input[type=text]{
     padding:10px;
@@ -415,15 +346,12 @@ em{
     margin:0px 5px;
     margin-bottom:20px;
     cursor: pointer;
-
 }
 .lista__acordes li:hover{
     background-color: #000000;
-
 }
 .container__acordes--seleccionar{
     margin-top: 0px;
-  
 }
 .container__acordes--seleccionar ul{
     margin-top: 20px;
@@ -434,7 +362,6 @@ em{
 .container__acordes--pintar p{
     margin-top: 20px;
 }
-
 .texto__pintar{
     line-height: 60px;
     cursor: pointer;
@@ -484,14 +411,12 @@ em{
     width: 250px;
     background-color:#e3e3e3;
     box-shadow: 0px 0px 10px gray;
-
 }
 .container__menu ul{
     margin-top: 50px;
     width: 100%;
     text-align: center;
 }
-
 .container__menu li{
     padding:30px 0;
     cursor: pointer;
@@ -501,7 +426,6 @@ em{
     font-size: 18px;
     border-bottom: 2px solid gray;
 }
-
 .container__menu li:hover{
     background-color: #1e33d4;
     color:white;
@@ -509,19 +433,16 @@ em{
 .mostrarMenu{
     animation: mostrarMenuAnimation .3s;
     left:0px;
-
 }
 .ocultarMenu{
     animation: ocultarMenuAnimation .3s;
     left:-300px;
-
 }
 .container__crearCancion{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-  
 }
 .container__crearCancion h2{
     text-align: center;
@@ -536,14 +457,12 @@ em{
 @keyframes ocultarMenuAnimation {
     0%{left:0}
     100%{left:-300px}
-    
 }
 @keyframes mostrarModal {
     0%{opacity: 0;
         margin-top: 400px;}
     100%{opacity:1;
     margin-top: 0;}
-    
 }
 .ocultarModal{
     animation: ocultarModal .3;
@@ -553,7 +472,6 @@ em{
     margin-top: 0;}
     100%{opacity: 0;
         margin-top: 400px;}
-    
 }
 .container__acordes--banner{
     position: fixed;
@@ -571,7 +489,6 @@ em{
     display: flex !important;
     flex-wrap: wrap;
     justify-content: center;
-
 }
 .container__explorar--info{
     display: flex;
@@ -587,7 +504,6 @@ em{
 #acordePintado{
     margin-right: 20px;
 }
-
 /* RESPONSIVE */
 @media (max-width:530px)  {
     .lista__acordes{
@@ -597,8 +513,7 @@ em{
         width: 100% !important; 
         padding:20px 0px;
     }
-    .home__container div{
-    }
+   
     .cancion__target{
         margin: 0 10px;
     }
@@ -615,26 +530,20 @@ em{
         height: 100%; 
         overflow-y:scroll;
         overflow-x: hidden;
-
         background-color: rgb(0,0,0);
         background-color: rgba(0,0,0,0.4); 
         animation: mostrarModal .3s;
         margin:0 auto !important;
       }
-      
       /* Modal Content/Box */
-      .modal-content {
+    .modal-content {
         background-color: #fefefe;
         margin: 0 auto !important; 
         border: 1px solid #888;
         width: 100%; 
         padding:0;
-
-      }
-  
-     
-      .container__crearCancion{
-       
+    }
+    .container__crearCancion{
         display: flex;
         justify-content: center;
         align-items: center;
@@ -642,15 +551,12 @@ em{
     }
     .container__crearCancion h2{
         text-align: center;
-    
     }
     .container__crearCancion{
         width: 100%;
-
     }
     .container__crearCancion textarea{
         width: 100%;
     }
-    
 }
 /* /RESPONSIVE */
