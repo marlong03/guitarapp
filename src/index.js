@@ -15,7 +15,12 @@ async function traerCanciones(busqueda = null) {
       const canciones = await response.json();
       listaCanciones = canciones.reverse();
     } catch (error) {
-      console.log('Tuvimos problemas para traer datos');
+      
+      Swal.fire(
+        '¡Ups!',
+        'Tuvimos problemas para traer datos',
+        'error'
+      )
     }
     if(listaCanciones.length != 0){
         if(busqueda == null){
@@ -62,7 +67,11 @@ async function traerAcordes(){
             listaAcordes = acordes
     })
     .catch(err =>{
-        console.log('tuvimos problemas para traer datos');
+        Swal.fire(
+            '¡Ups!',
+            'Tuvimos problemas para traer datos',
+            'error'
+          )
     })
 }
 traerAcordes()
@@ -77,7 +86,11 @@ async function traerPulsadas(){
         listaPulsadas = pulsadas
     })
     .catch(err =>{
-        console.log('tuvimos problemas para traer datos');
+        Swal.fire(
+            '¡Ups!',
+            'Tuvimos problemas para traer datos',
+            'error'
+          )
     })
 }
 traerPulsadas()
@@ -92,7 +105,11 @@ async function traerPosiciones(){
         listaPosiciones = Posiciones
     })
     .catch(err =>{
-        console.log('tuvimos problemas para traer datos');
+        Swal.fire(
+            '¡Ups!',
+            'Tuvimos problemas para traer datos',
+            'error'
+          )
     })
 }
 traerPosiciones()
@@ -109,7 +126,11 @@ async function traerAcordesCancion(id){
         });
     })
     .catch(err =>{
-        console.log('tuvimos problemas para traer datos');
+        Swal.fire(
+            '¡Ups!',
+            'Tuvimos problemas para traer datos',
+            'error'
+          )
     })
 /*     console.log(ListaAcordesCancion); */
 }
@@ -326,7 +347,11 @@ async function agregarAcordeALetra(letraCancion){
                 } */
             }
         }else{
-            alert('Por favor seleccione un acorde')
+            Swal.fire(
+                '¡Ups!',
+                'Por favor seleccione un acorde',
+                'warning'
+              )
         }
     })
 }
@@ -424,12 +449,23 @@ function crearCancion(){
             .catch(err =>{console.error(err)})
         }else{
             if(tituloInput.value == ''){
-                alert('falta titulo')
+                Swal.fire(
+                    '¡Ups!',
+                    'Falta titulo',
+                    'warning'
+                  )
             }else if(autorInput.value == ''){
-                alert('falta autor')
-    
+                Swal.fire(
+                    '¡Ups!',
+                    'Falta autor',
+                    'warning'
+                  )
             }else if(letraInput.value == ''){
-                alert('falta letra')
+                Swal.fire(
+                    '¡Ups!',
+                    'Falta letra',
+                    'warning'
+                  )
             }
         }
     })
@@ -664,7 +700,11 @@ function guardarAcorde(){
             .then(x =>x.json())
             .then(x =>{
                /*  console.log(x) */
-                console.log("se creo un nuevo acorde");
+                Swal.fire(
+                    'Acorde creado',
+                    'Haz creado un nuevo acorde',
+                    'success'
+                  )
                 let idAcordeNuevo = x.idacorde
                 let listaPulsadasGuardar = []
                 listaPulsadasAcorde.forEach(pulsada =>{
