@@ -11,11 +11,10 @@ let listaCanciones = []
 
 async function traerCanciones(busqueda = null) {
     try {
-      const response = await fetch('http://localhost:8080/cancion/get/all');
-      const canciones = await response.json();
-      listaCanciones = canciones.reverse();
+        const response = await fetch('http://localhost:8080/cancion/get/all');
+        const canciones = await response.json();
+        listaCanciones = canciones.reverse();
     } catch (error) {
-      
       Swal.fire(
         '¡Ups!',
         'Tuvimos problemas para traer datos',
@@ -25,7 +24,6 @@ async function traerCanciones(busqueda = null) {
     if(listaCanciones.length != 0){
         if(busqueda == null){
             listaCancionesHTML.innerHTML = ''
-
             for(let cancion of listaCanciones){
                 listaCancionesHTML.innerHTML += 
                 '<article class="cancion__target" id='+cancion.id+'>'+
@@ -54,7 +52,7 @@ async function traerCanciones(busqueda = null) {
             }
         }
     }
-  }
+}
 traerCanciones()
 
 
@@ -743,14 +741,13 @@ function guardarAcorde(){
                         clearInterval(timerInterval)
                     }
                     }).then((result) => {
-                    if (result.dismiss === Swal.DismissReason.timer) {
-                        
-                        resetCamposCrearAcorde()
-                        explorarAcordeAPintar()
-                        traerAcordes()
-                        traerCanciones()
-                        modalCrearAcorde.style.display = 'none'
-                    }
+                        if (result.dismiss === Swal.DismissReason.timer) {
+                            resetCamposCrearAcorde()
+                            explorarAcordeAPintar()
+                            traerAcordes()
+                            traerCanciones()
+                            modalCrearAcorde.style.display = 'none'
+                        }
                     })
                 })
                 .catch(err => {console.log(err)})
