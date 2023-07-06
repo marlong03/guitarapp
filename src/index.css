@@ -57,6 +57,7 @@ input[type="search"]{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    
 }
 .btnBorrar{
     margin-left: 10px;
@@ -66,6 +67,9 @@ input[type="search"]{
     cursor: pointer;
     font-size: 18px;
     background-color: #cfcfcf;
+}
+.modal-verCancion p{
+    margin-bottom: 60px;
 }
 .btnBorrar{
     margin:0 10px;
